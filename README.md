@@ -14,7 +14,7 @@ This repo host my solutions to the Matasano Crypto Challenges otherwise known as
 
 # Set 2
 ### In progress
-- [ ] Challenge 9
+- [X] Challenge 9
 - [ ] Challenge 10
 - [ ] Challenge 11
 - [ ] Challenge 12
