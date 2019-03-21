@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/brsmsn/cryptopals/set-1/challenge-7/ecb"
+	"github.com/brsmsn/cryptopals/set-1/challenge-07/ecb"
 )
 
 func main() {
