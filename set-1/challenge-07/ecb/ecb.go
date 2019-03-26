@@ -17,10 +17,10 @@ func newECB(b cipher.Block) *ecb {
 type ecbEcrypter ecb
 
 type ecbEncAble interface {
-	NewEBCEncrypter(b cipher.Block) cipher.BlockMode
+	NewECBEncrypter(b cipher.Block) cipher.BlockMode
 }
 
-func NewEBCEncrypter(b cipher.Block) cipher.BlockMode {
+func NewECBEncrypter(b cipher.Block) cipher.BlockMode {
 	return (*ecbEcrypter)(newECB(b))
 }
 
@@ -37,7 +37,7 @@ func (x *ecbEcrypter) CryptBlocks(dst, src []byte) {
 	}
 
 	for len(src) > 0 {
-		x.b.Encrypt(dst[:x.blockSize], dst[:x.blockSize])
+		x.b.Encrypt(dst[:x.blockSize], src[:x.blockSize])
 		src = src[x.blockSize:]
 		dst = dst[x.blockSize:]
 	}
@@ -46,10 +46,10 @@ func (x *ecbEcrypter) CryptBlocks(dst, src []byte) {
 type ecbDecrypter ecb
 
 type ecbDecAble interface {
-	NewEBCDecrypter(b cipher.Block) cipher.BlockMode
+	NewECBDecrypter(b cipher.Block) cipher.BlockMode
 }
 
-func NewEBCDecrypter(b cipher.Block) cipher.BlockMode {
+func NewECBDecrypter(b cipher.Block) cipher.BlockMode {
 	return (*ecbDecrypter)(newECB(b))
 }
 
@@ -69,7 +69,7 @@ func (x *ecbDecrypter) CryptBlocks(dst, src []byte) {
 	}
 
 	for len(src) > 0 {
-		x.b.Decrypt(dst[:x.blockSize], dst[:x.blockSize])
+		x.b.Decrypt(dst[:x.blockSize], src[:x.blockSize])
 		src = src[x.blockSize:]
 		dst = dst[x.blockSize:]
 	}

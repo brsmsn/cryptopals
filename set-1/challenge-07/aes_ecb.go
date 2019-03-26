@@ -45,7 +45,7 @@ func decryptAESECBGEN(key []byte, cipherTxt []byte) string {
 	block, err := aes.NewCipher(key)
 	checkErr(err)
 
-	mode := ecb.NewEBCDecrypter(block)
+	mode := ecb.NewECBDecrypter(block)
 	mode.CryptBlocks(cipherTxt, cipherTxt)
 
 	return string(cipherTxt)

@@ -35,7 +35,7 @@ import (
 func main() {
 
 	for i := 0; i < 10; i++ {
-		pt := []byte("asdasdasdasdasddskgjhdsfkgjbsdkjfhgbdsfjkhgbsdfjkghb")
+		pt := []byte("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 		ct := (encrypt(pt, genKey()))
 		fmt.Println("Encrypted with " + detectMode(ct))
 	}
@@ -55,7 +55,7 @@ func encrypt(pt, key []byte) []byte {
 		rand.Read(bytes)
 
 		//set bytes2 to an integer between 5 and 10 inclusive
-		bytes2 := make([]byte, bytes[0]%10+5)
+		bytes2 := make([]byte, bytes[0]%5+5)
 		rand.Read(bytes2)
 		return bytes2
 	}
@@ -71,7 +71,7 @@ func encrypt(pt, key []byte) []byte {
 
 	switch bytes[0] % 2 {
 	case 0:
-		mode := ecb.NewEBCDecrypter(block)
+		mode := ecb.NewECBDecrypter(block)
 		mode.CryptBlocks(ct, newPt)
 	case 1:
 		//encrrypt with cbc
@@ -87,7 +87,7 @@ func encrypt(pt, key []byte) []byte {
 func pad(text []byte) []byte {
 	blocksToPad := 16 - len(text)%16
 
-	if blocksToPad == 0 {
+	if blocksToPad == 0 || blocksToPad == 16 {
 		return text
 	}
 
